@@ -1,3 +1,7 @@
+Entrar na pasta da api
+
+cd api
+
 API REST para exemplo de crud de cadastro resumido de usuário.
 
 Criar o banco de dados importando o arquivo crud_vue_laravel.sql
@@ -12,3 +16,20 @@ php artisan migrate --seed
 
 -- executar o projeto
 php artisan serve
+
+
+-------------------------------------------
+
+Entrar na pasta do front
+
+cd front
+
+-- instalar as dependencias do projeto
+
+npm install
+
+-- executar o projeto
+
+nm run dev
+
+

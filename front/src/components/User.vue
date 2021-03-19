@@ -7,6 +7,10 @@
                 </div>
             </div>
 
+            <div v-bind:class="['alert',  message.class]" role="alert" v-if="message.mensagem !== ''">
+                {{message.mensagem}}
+            </div>
+
             <div class="row mb-2">
                 <div class="col">
                     <table class="table">
@@ -116,7 +120,11 @@
                     'status': '',
                     'password': ''
                 },
-                titleModalForm: String
+                titleModalForm: String,
+                message: {
+                    'class': '',
+                    'mensagem': ''
+                }
             }
         },
 
@@ -128,7 +136,10 @@
         methods:{
             async getAllUsers() {
                 Users.getAllUsers().then(res => {
-                this.users = res.data
+                    this.users = res.data
+                }, (error) => {
+                    this.message.class = 'alert-danger'
+                    this.message.mensagem = 'Erro de conectar com o servidor, por favor tente mais tarde!'
                 })
             },
 
@@ -144,21 +155,32 @@
 
             async createUser(){
                 await Users.createUser(this.user).then(res => {
-                    alert('Usuário cadastrado com sucesso!')
+                    this.message.class = 'alert-success'
+                    this.message.mensagem = 'Usuário cadastrado com sucesso!'
+                }, (error) => {
+                    this.message.class = 'alert-danger'
+                    this.message.mensagem = 'Erro de conectar com o servidor, por favor tente mais tarde!'
                 })
             },
 
             async updateUser() {
                 await Users.updateUser(this.user).then(res => {
-                    alert('Usuário atualizado com sucesso!')
+                    this.message.class = 'alert-success'
+                    this.message.mensagem = 'Usuário atualizado com sucesso!'
+                }, (error) => {
+                    this.message.class = 'alert-danger'
+                    this.message.mensagem = 'Erro de conectar com o servidor, por favor tente mais tarde!'
                 })
             },
 
             async deleteUser() {
                 console.log(this.user)
                 await Users.deleteUser(this.user).then(res => {
-                    alert('Usuário deletadp com sucesso!')
-                    console.log('res',res)
+                    this.message.class = 'alert-success'
+                    this.message.mensagem = 'Usuário deletado com sucesso!'
+                }, (error) => {
+                    this.message.class = 'alert-danger'
+                    this.message.mensagem = 'Erro de conectar com o servidor, por favor tente mais tarde!'
                 })
                 this.user = {}
                 await this.hideModal('deleteUser')

@@ -29,4 +29,22 @@ class UsersRepository
     {
         return Users::where('id',$request['id'])->delete() ? true : false;
     }
+
+    public function validateRules() 
+    {
+        return [
+            'name' => 'required',
+            'status' => 'required',
+            'email' => 'required|email'
+        ];
+    }
+
+    public function validateFeedback() 
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório',
+            'email' => 'O campo e-mail não é válido'
+        ];
+    }
+
 }

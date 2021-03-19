@@ -25,11 +25,13 @@ class UsersController extends Controller
 
     public function createUser(Request $request)
     {
+        $request->validate($this->repository->validateRules(), $this->repository->validateFeedback());
         return $this->repository->createUser($request->all());
     }
 
     public function updateUser(Request $request)
     {
+        $request->validate($this->repository->validateRules(), $this->repository->validateFeedback());
         return $this->repository->updateUser($request->all());
     }
 

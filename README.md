@@ -1,3 +1,6 @@
+Este projeto tem como objetivo exemplificar um CRUD utilizando VueJs para o Front-end consumindo API do back-end utilizando Laravel.
+
+---------------------------------------------
 Entrar na pasta da api
 
 cd api

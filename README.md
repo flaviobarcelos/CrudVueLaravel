@@ -33,6 +33,6 @@ npm install
 
 -- executar o projeto
 
-nm run dev
+npm run dev
 
 
